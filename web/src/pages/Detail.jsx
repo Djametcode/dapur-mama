@@ -97,8 +97,16 @@ export default function Detail() {
   const description = item.description || item.summary || ''
   const image = item.image || placeholderImg
   const author = item.author?.name || item.author || 'Dapur Mama'
-  const ingredients = item.ingredients || sampleIngredients
-  const steps = item.steps || item.instructions || sampleSteps
+  // Normalize ingredients: API returns [{name, amount}], component expects display text
+  const rawIngredients = item.ingredients || sampleIngredients
+  const ingredients = rawIngredients.map(ing =>
+    typeof ing === 'string' ? ing : `${ing.name} ${ing.amount || ''}`.trim()
+  )
+  // Normalize steps: API returns [{step, description}], component expects strings
+  const rawSteps = item.steps || item.instructions || sampleSteps
+  const steps = rawSteps.map(s =>
+    typeof s === 'string' ? s : s.description || String(s)
+  )
   const tags = item.tags || ['masak', 'resepnusantara', 'homecooking']
 
   return (
