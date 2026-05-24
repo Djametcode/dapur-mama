@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>Dapur Mama - Beranda</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#FFF8F0;color:#333}
+/* NAVBAR */
+.navbar{height:72px;background:rgba(255,248,240,0.97);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:space-between;padding:0 80px;border-bottom:1px solid #f0e8e0;position:sticky;top:0;z-index:100}
+.nav-logo{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#E07A2F;display:flex;align-items:center;gap:8px}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{text-decoration:none;color:#333;font-size:15px;font-weight:500;transition:color 0.3s}
+.nav-links a:hover,.nav-links a.active{color:#E07A2F}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-btn{padding:10px 24px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;border:none}
+.btn-outline{background:transparent;border:2px solid #E07A2F;color:#E07A2F}
+.btn-primary{background:#E07A2F;color:white}
+/* HERO */
+.hero{margin:0 80px;border-radius:24px;overflow:hidden;position:relative;height:480px;background:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1400&h=600&fit=crop') center/cover}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.15) 100%)}
+.hero-content{position:absolute;bottom:60px;left:60px;color:white;z-index:1;max-width:600px}
+.hero-content h1{font-family:'Playfair Display',serif;font-size:48px;margin-bottom:16px;line-height:1.15}
+.hero-content p{font-size:18px;margin-bottom:28px;opacity:0.9;line-height:1.6}
+.search-bar{display:flex;background:white;border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.15)}
+.search-bar input{flex:1;padding:18px 24px;border:none;font-size:16px;font-family:'Inter',sans-serif;color:#333;background:transparent}
+.search-bar input::placeholder{color:#bbb}
+.search-bar input:focus{outline:none}
+.search-btn{padding:18px 32px;background:#E07A2F;color:white;border:none;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif}
+/* CATEGORIES */
+.section{padding:48px 80px}
+.section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+.section-title{font-family:'Playfair Display',serif;font-size:28px;color:#333}
+.section-link{color:#E07A2F;font-size:14px;font-weight:600;text-decoration:none}
+.categories{display:flex;gap:16px}
+.cat-card{display:flex;flex-direction:column;align-items:center;gap:12px;padding:24px 32px;border-radius:16px;background:white;cursor:pointer;transition:all 0.3s;box-shadow:0 2px 12px rgba(0,0,0,0.06);min-width:130px}
+.cat-card:hover,.cat-card.active{background:#E07A2F;color:white;transform:translateY(-4px);box-shadow:0 8px 24px rgba(224,122,47,0.3)}
+.cat-card.active .cat-icon{background:rgba(255,255,255,0.2)}
+.cat-icon{width:56px;height:56px;border-radius:50%;background:#FFF3EB;display:flex;align-items:center;justify-content:center;font-size:28px}
+.cat-card.active .cat-icon{background:rgba(255,255,255,0.2)}
+.cat-card span{font-size:14px;font-weight:500}
+/* RECIPE GRID */
+.recipe-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.recipe-card{background:white;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06);transition:transform 0.3s,box-shadow 0.3s;cursor:pointer}
+.recipe-card:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(0,0,0,0.12)}
+.recipe-img{width:100%;height:200px;object-fit:cover}
+.recipe-body{padding:20px}
+.recipe-badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;background:#FFF3EB;color:#E07A2F;margin-bottom:10px}
+.recipe-title{font-size:16px;font-weight:600;margin-bottom:8px;line-height:1.4}
+.recipe-meta{display:flex;gap:16px;color:#999;font-size:13px}
+.recipe-meta span{display:flex;align-items:center;gap:4px}
+.recipe-author{display:flex;align-items:center;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid #f5f0eb}
+.recipe-avatar{width:32px;height:32px;border-radius:50%;object-fit:cover}
+.recipe-author-name{font-size:13px;color:#666}
+.recipe-rating{margin-left:auto;display:flex;align-items:center;gap:4px;font-size:13px;color:#f0a500;font-weight:600}
+/* TUTORIAL */
+.tutorial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.tutorial-card{background:white;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06);cursor:pointer;transition:transform 0.3s}
+.tutorial-card:hover{transform:translateY(-4px)}
+.tutorial-img{width:100%;height:220px;object-fit:cover;position:relative}
+.tutorial-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center}
+.play-btn{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,0.95);display:flex;align-items:center;justify-content:center;font-size:24px}
+.tutorial-body{padding:20px}
+.tutorial-title{font-size:16px;font-weight:600;margin-bottom:8px}
+.tutorial-meta{color:#999;font-size:13px;display:flex;gap:16px}
+/* BLOG */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.blog-card{background:white;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06);cursor:pointer;transition:transform 0.3s}
+.blog-card:hover{transform:translateY(-4px)}
+.blog-img{width:100%;height:200px;object-fit:cover}
+.blog-body{padding:20px}
+.blog-date{font-size:12px;color:#999;margin-bottom:8px}
+.blog-title{font-size:16px;font-weight:600;margin-bottom:8px;line-height:1.4}
+.blog-excerpt{font-size:14px;color:#666;line-height:1.6}
+/* FOOTER */
+.footer{background:#2D6A4F;color:white;padding:60px 80px;margin-top:40px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+.footer-brand h3{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:12px}
+.footer-brand p{font-size:14px;opacity:0.8;line-height:1.7}
+.footer-col h4{font-size:14px;font-weight:600;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;opacity:0.7}
+.footer-col a{display:block;color:white;text-decoration:none;font-size:14px;opacity:0.8;margin-bottom:10px}
+.footer-bottom{margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.15);text-align:center;font-size:13px;opacity:0.6}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-logo">🍳 Dapur Mama</div>
+  <div class="nav-links">
+    <a href="#" class="active">Beranda</a>
+    <a href="#">Resep</a>
+    <a href="#">Tutorial</a>
+    <a href="#">Blog</a>
+    <a href="#">Komunitas</a>
+  </div>
+  <div class="nav-right">
+    <button class="nav-btn btn-outline">Masuk</button>
+    <button class="nav-btn btn-primary">Daftar</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>Masak dengan Cinta, Sajikan dengan Bahagia</h1>
+    <p>Temukan ribuan resep rumahan dari mama-mama terbaik Indonesia. Mulai dari masakan sehari-hari hingga hidangan spesial.</p>
+    <div class="search-bar">
+      <input type="text" placeholder="Cari resep, bahan, atau kategori...">
+      <button class="search-btn">🔍 Cari Resep</button>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <h2 class="section-title">Kategori Populer</h2>
+    <a href="#" class="section-link">Lihat Semua →</a>
+  </div>
+  <div class="categories">
+    <div class="cat-card active"><div class="cat-icon">🍛</div><span>Nasi & Lauk</span></div>
+    <div class="cat-card"><div class="cat-icon">🥘</div><span>Soup & Kuah</span></div>
+    <div class="cat-card"><div class="cat-icon">🥗</div><span>Salad & Sayur</span></div>
+    <div class="cat-card"><div class="cat-icon">🍜</div><span>Mie & Pasta</span></div>
+    <div class="cat-card"><div class="cat-icon">🍰</div><span>Kue & Dessert</span></div>
+    <div class="cat-card"><div class="cat-icon">🥤</div><span>Minuman</span></div>
+    <div class="cat-card"><div class="cat-icon">🧆</div><span>Camilan</span></div>
+    <div class="cat-card"><div class="cat-icon">🍼</div><span>MPASI</span></div>
+  </div>
+</div>
+
+<div class="section" style="padding-top:0">
+  <div class="section-header">
+    <h2 class="section-title">Resep Terbaru</h2>
+    <a href="#" class="section-link">Lihat Semua →</a>
+  </div>
+  <div class="recipe-grid">
+    <div class="recipe-card">
+      <img class="recipe-img" src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=500&h=300&fit=crop" alt="Rendang">
+      <div class="recipe-body">
+        <span class="recipe-badge">🔥 Trending</span>
+        <h3 class="recipe-title">Rendang Daging Sapi Padang</h3>
+        <div class="recipe-meta"><span>⏱ 120 menit</span><span>👥 6 porsi</span><span>📊 Sedang</span></div>
+        <div class="recipe-author">
+          <img class="recipe-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="">
+          <span class="recipe-author-name">Mama Rina</span>
+          <span class="recipe-rating">⭐ 4.8</span>
+        </div>
+      </div>
+    </div>
+    <div class="recipe-card">
+      <img class="recipe-img" src="https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=500&h=300&fit=crop" alt="Ayam Bakar">
+      <div class="recipe-body">
+        <span class="recipe-badge">🆕 Baru</span>
+        <h3 class="recipe-title">Ayam Bakar Madu Kecap</h3>
+        <div class="recipe-meta"><span>⏱ 45 menit</span><span>👥 4 porsi</span><span>📊 Mudah</span></div>
+        <div class="recipe-author">
+          <img class="recipe-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop" alt="">
+          <span class="recipe-author-name">Mama Dewi</span>
+          <span class="recipe-rating">⭐ 4.6</span>
+        </div>
+      </div>
+    </div>
+    <div class="recipe-card">
+      <img class="recipe-img" src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=500&h=300&fit=crop" alt="Soto Ayam">
+      <div class="recipe-body">
+        <span class="recipe-badge">❤️ Favorit</span>
+        <h3 class="recipe-title">Soto Ayam Lamongan Spesial</h3>
+        <div class="recipe-meta"><span>⏱ 60 menit</span><span>👥 8 porsi</span><span>📊 Sedang</span></div>
+        <div class="recipe-author">
+          <img class="recipe-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="">
+          <span class="recipe-author-name">Mama Sari</span>
+          <span class="recipe-rating">⭐ 4.9</span>
+        </div>
+      </div>
+    </div>
+    <div class="recipe-card">
+      <img class="recipe-img" src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=500&h=300&fit=crop" alt="Nasi Goreng">
+      <div class="recipe-body">
+        <span class="recipe-badge">🔥 Trending</span>
+        <h3 class="recipe-title">Nasi Goreng Kampung Pedas</h3>
+        <div class="recipe-meta"><span>⏱ 20 menit</span><span>👥 2 porsi</span><span>📊 Mudah</span></div>
+        <div class="recipe-author">
+          <img class="recipe-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="">
+          <span class="recipe-author-name">Mama Ani</span>
+          <span class="recipe-rating">⭐ 4.5</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="padding-top:0;background:#f9f5f0">
+  <div class="section-header">
+    <h2 class="section-title">Tutorial Memasak</h2>
+    <a href="#" class="section-link">Lihat Semua →</a>
+  </div>
+  <div class="tutorial-grid">
+    <div class="tutorial-card" style="position:relative">
+      <img class="tutorial-img" src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600&h=350&fit=crop" alt="">
+      <div class="tutorial-overlay"><div class="play-btn">▶</div></div>
+      <div class="tutorial-body">
+        <h3 class="tutorial-title">Teknik Memotong Bawang dengan Benar</h3>
+        <div class="tutorial-meta"><span>▶ 12.5K views</span><span>⏱ 8:30</span></div>
+      </div>
+    </div>
+    <div class="tutorial-card" style="position:relative">
+      <img class="tutorial-img" src="https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=600&h=350&fit=crop" alt="">
+      <div class="tutorial-overlay"><div class="play-btn">▶</div></div>
+      <div class="tutorial-body">
+        <h3 class="tutorial-title">Membuat Bumbu Dasar Masakan Indonesia</h3>
+        <div class="tutorial-meta"><span>▶ 8.3K views</span><span>⏱ 15:20</span></div>
+      </div>
+    </div>
+    <div class="tutorial-card" style="position:relative">
+      <img class="tutorial-img" src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=600&h=350&fit=crop" alt="">
+      <div class="tutorial-overlay"><div class="play-btn">▶</div></div>
+      <div class="tutorial-body">
+        <h3 class="tutorial-title">Tips Menggoreng Agar Tidak Menyiprat</h3>
+        <div class="tutorial-meta"><span>▶ 22.1K views</span><span>⏱ 6:45</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <h2 class="section-title">Artikel & Tips</h2>
+    <a href="#" class="section-link">Lihat Semua →</a>
+  </div>
+  <div class="blog-grid">
+    <div class="blog-card">
+      <img class="blog-img" src="https://images.unsplash.com/photo-1495195134817-aeb325a55b65?w=600&h=300&fit=crop" alt="">
+      <div class="blog-body">
+        <div class="blog-date">📅 20 Mei 2026</div>
+        <h3 class="blog-title">10 Tips Menyimpan Bumbu Dapur Agar Tahan Lama</h3>
+        <p class="blog-excerpt">Bumbu dapur yang disimpan dengan benar bisa bertahan berminggu-minggu. Simak tips jitu dari para mama ahli masak.</p>
+      </div>
+    </div>
+    <div class="blog-card">
+      <img class="blog-img" src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=600&h=300&fit=crop" alt="">
+      <div class="blog-body">
+        <div class="blog-date">📅 18 Mei 2026</div>
+        <h3 class="blog-title">Panduan Lengkap Memilih Daging Segar untuk Masakan</h3>
+        <p class="blog-excerpt">Bagaimana cara mengetahui daging masih segar atau tidak? Pelajari tips memilih daging terbaik untuk keluarga.</p>
+      </div>
+    </div>
+    <div class="blog-card">
+      <img class="blog-img" src="https://images.unsplash.com/photo-1484980972926-edee96e0960d?w=600&h=300&fit=crop" alt="">
+      <div class="blog-body">
+        <div class="blog-date">📅 15 Mei 2026</div>
+        <h3 class="blog-title">Resep Anti Gagal: Cara Membuat Kue Lapis Legit</h3>
+        <p class="blog-excerpt">Kue lapis legit adalah kue klasik yang selalu hadir di momen spesial. Ikuti langkah-langkah mudah ini.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>🍳 Dapur Mama</h3>
+      <p>Platform resep masakan Indonesia terlengkap. Dibuat oleh mama, untuk mama. Masak jadi lebih mudah, hemat, dan menyenangkan.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigasi</h4>
+      <a href="#">Beranda</a><a href="#">Resep</a><a href="#">Tutorial</a><a href="#">Blog</a><a href="#">Komunitas</a>
+    </div>
+    <div class="footer-col">
+      <h4>Kategori</h4>
+      <a href="#">Nasi & Lauk</a><a href="#">Soup & Kuah</a><a href="#">Kue & Dessert</a><a href="#">Minuman</a><a href="#">MPASI</a>
+    </div>
+    <div class="footer-col">
+      <h4>Ikuti Kami</h4>
+      <a href="#">Instagram</a><a href="#">YouTube</a><a href="#">Facebook</a><a href="#">TikTok</a><a href="#">Twitter</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Dapur Mama. Semua hak cipta dilindungi. Dibuat dengan ❤️ di Indonesia.</div>
+</footer>
+</body>
+</html>

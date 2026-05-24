@@ -9,6 +9,13 @@ import api from '../api/axios'
 
 const placeholderImg = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1200&h=600&fit=crop'
 
+// Extract YouTube video ID from URL and build embed URL
+function getYouTubeEmbedUrl(url) {
+  if (!url) return null
+  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/)
+  return match ? `https://www.youtube.com/embed/${match[1]}` : null
+}
+
 const typeConfig = {
   recipe: { icon: ChefHat, label: 'Resep', color: 'primary' },
   tutorial: { icon: BookOpen, label: 'Tutorial', color: 'secondary' },
@@ -216,6 +223,27 @@ export default function Detail() {
                 {description || `Ini adalah ${config.label.toLowerCase()} yang dibuat dengan penuh cinta untuk komunitas Dapur Mama. Resep ini sudah teruji dan dijamin lezat untuk keluarga tercinta.`}
               </p>
             </div>
+
+            {/* YouTube Video Embed (tutorials only) */}
+            {type === 'tutorial' && getYouTubeEmbedUrl(item.videoUrl) && (
+              <div className="bg-white rounded-2xl shadow-card overflow-hidden mb-6">
+                <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                  <iframe
+                    src={getYouTubeEmbedUrl(item.videoUrl)}
+                    title={title}
+                    className="absolute inset-0 w-full h-full"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+                <div className="p-4 flex items-center gap-2 text-sm text-text-light">
+                  <span className="font-medium text-text-main">Video Tutorial</span>
+                  <span>•</span>
+                  <span>{item.duration || 'Tonton video untuk panduan visual'}</span>
+                </div>
+              </div>
+            )}
 
             {/* Ingredients (for recipes/tutorials) */}
             {(type === 'recipe' || type === 'tutorial') && (

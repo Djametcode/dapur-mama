@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390, initial-scale=1.0">
+<title>Dapur Mama - Splash</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh; background: #1a1a1a;
+    font-family: 'Inter', sans-serif;
+  }
+  .phone-frame {
+    width: 390px; height: 844px;
+    background: #FFF8F0;
+    border-radius: 48px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 0 12px #1a1a1a, 0 0 0 14px #333, 0 30px 80px rgba(0,0,0,0.5);
+  }
+  .notch {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 126px; height: 34px; background: #1a1a1a;
+    border-radius: 0 0 20px 20px; z-index: 10;
+  }
+  .status-bar {
+    position: absolute; top: 0; left: 0; right: 0; height: 54px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 32px; z-index: 11;
+    font-size: 14px; font-weight: 600; color: #FFF8F0;
+  }
+  .status-bar .time { margin-top: 12px; }
+  .status-icons { display: flex; gap: 6px; margin-top: 12px; align-items: center; }
+  .status-icons svg { width: 16px; height: 12px; fill: #FFF8F0; }
+  
+  .splash-content {
+    height: 100%; display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+  }
+  
+  .hero-image {
+    position: absolute; top: 0; left: 0; right: 0; height: 560px;
+    background: linear-gradient(180deg, rgba(224,122,47,0.15) 0%, rgba(255,248,240,1) 100%),
+      url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=780&q=80') center/cover;
+  }
+  
+  .hero-overlay {
+    position: absolute; top: 0; left: 0; right: 0; height: 560px;
+    background: linear-gradient(180deg, 
+      rgba(45,106,79,0.05) 0%, 
+      rgba(224,122,47,0.08) 30%,
+      rgba(255,248,240,0.3) 70%,
+      rgba(255,248,240,0.95) 100%);
+  }
+  
+  .logo-area {
+    position: absolute; top: 100px; left: 0; right: 0;
+    text-align: center; z-index: 5;
+  }
+  .logo-icon {
+    width: 80px; height: 80px; margin: 0 auto 16px;
+    background: #E07A2F;
+    border-radius: 24px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 32px rgba(224,122,47,0.4);
+  }
+  .logo-icon svg { width: 44px; height: 44px; }
+  
+  .bottom-content {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 0 32px 60px;
+    text-align: center; z-index: 5;
+  }
+  
+  .app-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; font-weight: 700; color: #333;
+    margin-bottom: 4px; letter-spacing: -0.5px;
+  }
+  .app-title span { color: #E07A2F; }
+  .app-subtitle {
+    font-size: 15px; color: #666; margin-bottom: 48px;
+    font-weight: 400; line-height: 1.5;
+  }
+  
+  .onboarding-cards {
+    display: flex; gap: 12px; justify-content: center;
+    margin-bottom: 40px;
+  }
+  .onboard-card {
+    width: 160px; height: 180px;
+    background: #fff; border-radius: 20px;
+    padding: 20px 16px;
+    display: flex; flex-direction: column; align-items: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    border: 1px solid rgba(224,122,47,0.1);
+  }
+  .onboard-card .icon-circle {
+    width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px; font-size: 24px;
+  }
+  .onboard-card:nth-child(1) .icon-circle { background: rgba(224,122,47,0.12); }
+  .onboard-card:nth-child(2) .icon-circle { background: rgba(45,106,79,0.12); }
+  .onboard-card:nth-child(3) .icon-circle { background: rgba(224,122,47,0.12); }
+  .onboard-card .card-title {
+    font-size: 13px; font-weight: 600; color: #333;
+    margin-bottom: 6px; text-align: center;
+  }
+  .onboard-card .card-desc {
+    font-size: 11px; color: #888; text-align: center;
+    line-height: 1.4;
+  }
+  
+  .dots {
+    display: flex; gap: 8px; justify-content: center;
+    margin-bottom: 28px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 4px; background: #ddd; }
+  .dot.active { width: 24px; background: #E07A2F; }
+  
+  .cta-btn {
+    width: 100%; height: 56px;
+    background: #E07A2F; color: #fff;
+    border: none; border-radius: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px; font-weight: 600;
+    cursor: pointer; letter-spacing: 0.3px;
+    box-shadow: 0 8px 24px rgba(224,122,47,0.35);
+  }
+  .skip-link {
+    display: block; margin-top: 16px;
+    font-size: 14px; color: #888;
+    text-decoration: none;
+  }
+  
+  .home-indicator {
+    position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+    width: 134px; height: 5px; background: #333;
+    border-radius: 3px; z-index: 10;
+  }
+</style>
+</head>
+<body>
+<div class="phone-frame">
+  <div class="notch"></div>
+  <div class="status-bar">
+    <span class="time">9:41</span>
+    <div class="status-icons">
+      <svg viewBox="0 0 16 12"><path d="M1 9h2v3H1zm4-3h2v6H5zm4-3h2v9H9zm4-3h2v12h-2z"/></svg>
+      <svg viewBox="0 0 16 12"><path d="M8 2C4.7 2 1.8 3.5 0 6c1.8 2.5 4.7 4 8 4s6.2-1.5 8-4c-1.8-2.5-4.7-4-8-4zm0 6.7c-1.5 0-2.7-1.2-2.7-2.7S6.5 3.3 8 3.3 10.7 4.5 10.7 6 9.5 8.7 8 8.7z"/></svg>
+      <svg viewBox="0 0 28 14"><rect x="0" y="0" width="24" height="14" rx="3" ry="3" fill="none" stroke="#FFF8F0" stroke-width="1.5"/><rect x="25" y="4" width="2.5" height="6" rx="1" fill="#FFF8F0" opacity="0.5"/><rect x="2" y="2" width="16" height="10" rx="1.5" fill="#FFF8F0"/></svg>
+    </div>
+  </div>
+  
+  <div class="splash-content">
+    <div class="hero-image"></div>
+    <div class="hero-overlay"></div>
+    
+    <div class="logo-area">
+      <div class="logo-icon">
+        <svg viewBox="0 0 44 44" fill="none">
+          <path d="M22 8C16 8 11 13 11 19v4c0 2 1 3 2 4l-1 8c0 1 1 2 2 2h16c1 0 2-1 2-2l-1-8c1-1 2-2 2-4v-4c0-6-5-11-11-11z" fill="#FFF8F0" opacity="0.9"/>
+          <ellipse cx="22" cy="22" rx="6" ry="4" fill="#E07A2F" opacity="0.3"/>
+          <path d="M22 14c-1 0-2 1-2 2s1 2 2 2 2-1 2-2-1-2-2-2z" fill="#E07A2F"/>
+        </svg>
+      </div>
+    </div>
+    
+    <div class="bottom-content">
+      <div class="app-title">Dapur <span>Mama</span></div>
+      <div class="app-subtitle">Masakan rumahan terbaik untuk keluarga tercinta</div>
+      
+      <div class="onboarding-cards">
+        <div class="onboard-card">
+          <div class="icon-circle">📖</div>
+          <div class="card-title">1000+ Resep</div>
+          <div class="card-desc">Resep nusantara lengkap & terpercaya</div>
+        </div>
+        <div class="onboard-card">
+          <div class="icon-circle">👩‍🍳</div>
+          <div class="card-title">Langkah Mudah</div>
+          <div class="card-desc">Tutorial masak step-by-step</div>
+        </div>
+        <div class="onboard-card">
+          <div class="icon-circle">❤️</div>
+          <div class="card-title">Simpan Favorit</div>
+          <div class="card-desc">Koleksi resep kesukaanmu</div>
+        </div>
+      </div>
+      
+      <div class="dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      
+      <button class="cta-btn">Mulai Memasak</button>
+      <a href="#" class="skip-link">Lewati</a>
+    </div>
+  </div>
+  
+  <div class="home-indicator"></div>
+</div>
+</body>
+</html>

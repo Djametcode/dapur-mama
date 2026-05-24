@@ -302,37 +302,37 @@ const seedData = async () => {
     // Create tutorials
     const tutorials = await Tutorial.insertMany([
       {
-        title: 'Cara Membuat Nasi Goreng',
+        title: 'Cara Membuat Nasi Goreng Spesial',
         description: 'Tutorial lengkap cara membuat nasi goreng spesial dari nol. Pelajari tips dan trik agar nasi gorengmu memiliki rasa yang lezat dan tekstur yang pas.',
         image: '/uploads/tutorials/nasi-goreng-tutorial.jpg',
-        videoUrl: 'https://www.youtube.com/watch?v=example1',
+        videoUrl: 'https://www.youtube.com/watch?v=VmBYmVVyzVw',
         duration: '15 menit',
         category: 'Sarapan',
         author: user._id
       },
       {
-        title: 'Tips Memasak Rendang',
+        title: 'Tips Memasak Rendang Padang Autentik',
         description: 'Kumpulan tips dan trik untuk memasak rendang yang autentik dan lezat. Dari pemilihan daging hingga teknik memasak yang benar.',
         image: '/uploads/tutorials/rendang-tutorial.jpg',
-        videoUrl: 'https://www.youtube.com/watch?v=example2',
+        videoUrl: 'https://www.youtube.com/watch?v=qWdFYDBrT3I',
         duration: '20 menit',
         category: 'Makan Malam',
         author: user._id
       },
       {
-        title: 'Membuat Kue Martabak',
+        title: 'Resep Martabak Manis Anti Gagal',
         description: 'Belajar membuat martabak manis yang lembut dan mengembang sempurna. Termasuk rahasia adonan yang fluffy.',
         image: '/uploads/tutorials/martabak-tutorial.jpg',
-        videoUrl: 'https://www.youtube.com/watch?v=example3',
+        videoUrl: 'https://www.youtube.com/watch?v=Q94L98rwg8Y',
         duration: '25 menit',
         category: 'Cemilan',
         author: user2._id
       },
       {
-        title: 'Resep Puding Coklat',
+        title: 'Resep Puding Coklat Simpel',
         description: 'Cara membuat puding coklat yang creamy dan lembut. Resep simpel yang bisa dicoba di rumah.',
         image: '/uploads/tutorials/puding-tutorial.jpg',
-        videoUrl: 'https://www.youtube.com/watch?v=example4',
+        videoUrl: 'https://www.youtube.com/watch?v=o2f4EkD1B9Q',
         duration: '12 menit',
         category: 'Cemilan',
         author: user2._id

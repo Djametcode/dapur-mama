@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390, initial-scale=1.0">
+<title>Dapur Mama - Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh; background: #1a1a1a;
+    font-family: 'Inter', sans-serif;
+  }
+  .phone-frame {
+    width: 390px; height: 844px;
+    background: #FFF8F0;
+    border-radius: 48px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 0 12px #1a1a1a, 0 0 0 14px #333, 0 30px 80px rgba(0,0,0,0.5);
+  }
+  .notch {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 126px; height: 34px; background: #1a1a1a;
+    border-radius: 0 0 20px 20px; z-index: 10;
+  }
+  .status-bar {
+    position: absolute; top: 0; left: 0; right: 0; height: 54px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 32px; z-index: 11;
+    font-size: 14px; font-weight: 600; color: #333;
+  }
+  .status-bar .time { margin-top: 12px; }
+  .status-icons { display: flex; gap: 6px; margin-top: 12px; align-items: center; }
+  .status-icons svg { width: 16px; height: 12px; fill: #333; }
+  
+  .home-content {
+    height: 100%; overflow-y: auto; padding-top: 54px;
+    padding-bottom: 90px; -webkit-overflow-scrolling: touch;
+  }
+  .home-content::-webkit-scrollbar { display: none; }
+  
+  /* Header */
+  .header {
+    padding: 16px 24px 12px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .greeting { font-size: 13px; color: #888; margin-bottom: 2px; }
+  .user-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; color: #333; }
+  .avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, #E07A2F, #2D6A4F);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 600; font-size: 16px;
+    border: 2px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  /* Search */
+  .search-bar {
+    margin: 8px 24px 20px;
+    background: #fff; border-radius: 16px;
+    display: flex; align-items: center;
+    padding: 0 16px; height: 52px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+  .search-bar svg { width: 20px; height: 20px; fill: #aaa; margin-right: 12px; flex-shrink: 0; }
+  .search-bar input {
+    border: none; outline: none; flex: 1;
+    font-family: 'Inter', sans-serif; font-size: 14px;
+    color: #333; background: transparent;
+  }
+  .search-bar input::placeholder { color: #bbb; }
+  .filter-btn {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: #E07A2F; border: none;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; flex-shrink: 0;
+  }
+  .filter-btn svg { width: 18px; height: 18px; fill: #fff; }
+  
+  /* Categories */
+  .section-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 24px; margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 600; color: #333;
+  }
+  .see-all {
+    font-size: 13px; color: #E07A2F; font-weight: 500;
+    text-decoration: none;
+  }
+  
+  .categories {
+    display: flex; gap: 12px; padding: 0 24px;
+    overflow-x: auto; margin-bottom: 28px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .categories::-webkit-scrollbar { display: none; }
+  .cat-item {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 8px; flex-shrink: 0; cursor: pointer;
+  }
+  .cat-icon {
+    width: 64px; height: 64px; border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; transition: transform 0.2s;
+  }
+  .cat-item:nth-child(1) .cat-icon { background: rgba(224,122,47,0.12); }
+  .cat-item:nth-child(2) .cat-icon { background: rgba(45,106,79,0.12); }
+  .cat-item:nth-child(3) .cat-icon { background: rgba(224,122,47,0.12); }
+  .cat-item:nth-child(4) .cat-icon { background: rgba(45,106,79,0.12); }
+  .cat-item:nth-child(5) .cat-icon { background: rgba(224,122,47,0.12); }
+  .cat-item:nth-child(6) .cat-icon { background: rgba(45,106,79,0.12); }
+  .cat-label { font-size: 12px; color: #555; font-weight: 500; white-space: nowrap; }
+  .cat-item.active .cat-icon { box-shadow: 0 4px 16px rgba(224,122,47,0.3); }
+  .cat-item.active .cat-label { color: #E07A2F; font-weight: 600; }
+  
+  /* Featured Banner */
+  .featured {
+    margin: 0 24px 28px;
+    border-radius: 24px; overflow: hidden;
+    position: relative; height: 200px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  }
+  .featured-img {
+    width: 100%; height: 100%; object-fit: cover;
+    background: url('https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=780&q=80') center/cover;
+  }
+  .featured-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 40px 20px 20px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  }
+  .featured-tag {
+    display: inline-block;
+    background: #E07A2F; color: #fff;
+    font-size: 11px; font-weight: 600;
+    padding: 4px 10px; border-radius: 8px;
+    margin-bottom: 8px; letter-spacing: 0.5px;
+  }
+  .featured-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 600; color: #fff;
+    margin-bottom: 4px;
+  }
+  .featured-meta {
+    font-size: 12px; color: rgba(255,255,255,0.8);
+    display: flex; gap: 12px; align-items: center;
+  }
+  .featured-meta span { display: flex; align-items: center; gap: 4px; }
+  .featured-heart {
+    position: absolute; top: 16px; right: 16px;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    display: flex; align-items: center; justify-content: center;
+  }
+  
+  /* Recipe Cards */
+  .recipe-scroll {
+    display: flex; gap: 16px; padding: 0 24px;
+    overflow-x: auto; margin-bottom: 28px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .recipe-scroll::-webkit-scrollbar { display: none; }
+  
+  .recipe-card {
+    flex-shrink: 0; width: 180px;
+    background: #fff; border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+  .recipe-card-img {
+    width: 100%; height: 130px;
+    background-size: cover; background-position: center;
+    position: relative;
+  }
+  .recipe-card-badge {
+    position: absolute; top: 10px; left: 10px;
+    background: rgba(45,106,79,0.9); color: #fff;
+    font-size: 10px; font-weight: 600;
+    padding: 3px 8px; border-radius: 6px;
+  }
+  .recipe-card-fav {
+    position: absolute; top: 10px; right: 10px;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(255,255,255,0.85);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .recipe-card-info { padding: 12px 14px; }
+  .recipe-card-name {
+    font-size: 14px; font-weight: 600; color: #333;
+    margin-bottom: 6px; line-height: 1.3;
+  }
+  .recipe-card-meta {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px; color: #999;
+  }
+  .recipe-card-meta svg { width: 12px; height: 12px; fill: #E07A2F; }
+  .recipe-card-rating {
+    display: flex; align-items: center; gap: 3px;
+    font-size: 11px; color: #E07A2F; font-weight: 600;
+    margin-top: 6px;
+  }
+  
+  /* Quick Ideas - horizontal list */
+  .quick-ideas {
+    margin: 0 24px 28px;
+  }
+  .idea-card {
+    display: flex; gap: 14px; align-items: center;
+    background: #fff; border-radius: 16px;
+    padding: 12px; margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .idea-img {
+    width: 64px; height: 64px; border-radius: 12px;
+    background-size: cover; background-position: center;
+    flex-shrink: 0;
+  }
+  .idea-text { flex: 1; }
+  .idea-name { font-size: 14px; font-weight: 600; color: #333; margin-bottom: 3px; }
+  .idea-info { font-size: 12px; color: #888; }
+  .idea-time {
+    font-size: 11px; color: #2D6A4F; font-weight: 600;
+    background: rgba(45,106,79,0.08);
+    padding: 4px 8px; border-radius: 8px;
+  }
+  
+  /* Bottom Nav */
+  .bottom-nav {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 84px; background: #fff;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    display: flex; justify-content: space-around;
+    align-items: flex-start; padding-top: 12px;
+    z-index: 10;
+  }
+  .nav-item {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 4px; cursor: pointer; min-width: 60px;
+  }
+  .nav-icon { width: 24px; height: 24px; }
+  .nav-icon svg { width: 24px; height: 24px; fill: #ccc; }
+  .nav-item.active .nav-icon svg { fill: #E07A2F; }
+  .nav-label { font-size: 10px; color: #ccc; font-weight: 500; }
+  .nav-item.active .nav-label { color: #E07A2F; font-weight: 600; }
+  
+  .home-indicator {
+    position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+    width: 134px; height: 5px; background: #333;
+    border-radius: 3px; z-index: 11;
+  }
+</style>
+</head>
+<body>
+<div class="phone-frame">
+  <div class="notch"></div>
+  <div class="status-bar">
+    <span class="time">9:41</span>
+    <div class="status-icons">
+      <svg viewBox="0 0 16 12"><path d="M1 9h2v3H1zm4-3h2v6H5zm4-3h2v9H9zm4-3h2v12h-2z"/></svg>
+      <svg viewBox="0 0 28 14"><rect x="0" y="0" width="24" height="14" rx="3" ry="3" fill="none" stroke="#333" stroke-width="1.5"/><rect x="25" y="4" width="2.5" height="6" rx="1" fill="#333" opacity="0.5"/><rect x="2" y="2" width="16" height="10" rx="1.5" fill="#333"/></svg>
+    </div>
+  </div>
+  
+  <div class="home-content">
+    <!-- Header -->
+    <div class="header">
+      <div>
+        <div class="greeting">Selamat Pagi, Rina 👋</div>
+        <div class="user-name">Mau Masak Apa Hari Ini?</div>
+      </div>
+      <div class="avatar">R</div>
+    </div>
+    
+    <!-- Search -->
+    <div class="search-bar">
+      <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+      <input type="text" placeholder="Cari resep, bahan, atau masakan...">
+      <button class="filter-btn">
+        <svg viewBox="0 0 24 24"><path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"/></svg>
+      </button>
+    </div>
+    
+    <!-- Categories -->
+    <div class="section-header">
+      <div class="section-title">Kategori</div>
+      <a href="#" class="see-all">Semua →</a>
+    </div>
+    <div class="categories">
+      <div class="cat-item active">
+        <div class="cat-icon">🍛</div>
+        <div class="cat-label">Nusantara</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-icon">🍜</div>
+        <div class="cat-label">Mie & Sup</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-icon">🥗</div>
+        <div class="cat-label">Sayuran</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-icon">🍖</div>
+        <div class="cat-label">Protein</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-icon">🧁</div>
+        <div class="cat-label">Kue & Jajan</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-icon">🥤</div>
+        <div class="cat-label">Minuman</div>
+      </div>
+    </div>
+    
+    <!-- Featured -->
+    <div class="section-header">
+      <div class="section-title">Resep Unggulan</div>
+      <a href="#" class="see-all">Lainnya →</a>
+    </div>
+    <div class="featured">
+      <div class="featured-img"></div>
+      <div class="featured-overlay">
+        <div class="featured-tag">⭐ RESEP PILIHAN</div>
+        <div class="featured-title">Nasi Goreng Spesial</div>
+        <div class="featured-meta">
+          <span>⏱ 25 menit</span>
+          <span>👨‍🍳 Mudah</span>
+          <span>⭐ 4.8</span>
+          <span>❤️ 2.3k</span>
+        </div>
+      </div>
+      <div class="featured-heart">❤️</div>
+    </div>
+    
+    <!-- Popular Recipes -->
+    <div class="section-header">
+      <div class="section-title">Populer Minggu Ini</div>
+      <a href="#" class="see-all">Semua →</a>
+    </div>
+    <div class="recipe-scroll">
+      <div class="recipe-card">
+        <div class="recipe-card-img" style="background-image: url('https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&q=80')">
+          <div class="recipe-card-badge">🔥 Trending</div>
+          <div class="recipe-card-fav">🤍</div>
+        </div>
+        <div class="recipe-card-info">
+          <div class="recipe-card-name">Rendang Padang Asli</div>
+          <div class="recipe-card-meta">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/></svg>
+            45 menit
+          </div>
+          <div class="recipe-card-rating">⭐ 4.9</div>
+        </div>
+      </div>
+      <div class="recipe-card">
+        <div class="recipe-card-img" style="background-image: url('https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400&q=80')">
+          <div class="recipe-card-fav">🤍</div>
+        </div>
+        <div class="recipe-card-info">
+          <div class="recipe-card-name">Soto Ayam Kampung</div>
+          <div class="recipe-card-meta">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/></svg>
+            60 menit
+          </div>
+          <div class="recipe-card-rating">⭐ 4.7</div>
+        </div>
+      </div>
+      <div class="recipe-card">
+        <div class="recipe-card-img" style="background-image: url('https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=400&q=80')">
+          <div class="recipe-card-badge">✨ Baru</div>
+          <div class="recipe-card-fav">🤍</div>
+        </div>
+        <div class="recipe-card-info">
+          <div class="recipe-card-name">Gado-Gado Jakarta</div>
+          <div class="recipe-card-meta">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/></svg>
+            30 menit
+          </div>
+          <div class="recipe-card-rating">⭐ 4.6</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Quick Ideas -->
+    <div class="section-header">
+      <div class="section-title">Ide Cepat Hari Ini</div>
+      <a href="#" class="see-all">Semua →</a>
+    </div>
+    <div class="quick-ideas">
+      <div class="idea-card">
+        <div class="idea-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200&q=80')"></div>
+        <div class="idea-text">
+          <div class="idea-name">Salad Buah Segar</div>
+          <div class="idea-info">5 bahan • Mudah</div>
+        </div>
+        <div class="idea-time">10 min</div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-img" style="background-image: url('https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=200&q=80')"></div>
+        <div class="idea-text">
+          <div class="idea-name">Telur Dadar Padang</div>
+          <div class="idea-info">4 bahan • Mudah</div>
+        </div>
+        <div class="idea-time">15 min</div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-img" style="background-image: url('https://images.unsplash.com/photo-1567337710282-00832b415979?w=200&q=80')"></div>
+        <div class="idea-text">
+          <div class="idea-name">Es Jeruk Segar</div>
+          <div class="idea-info">3 bahan • Mudah</div>
+        </div>
+        <div class="idea-time">5 min</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Bottom Nav -->
+  <div class="bottom-nav">
+    <div class="nav-item active">
+      <div class="nav-icon"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div>
+      <div class="nav-label">Beranda</div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
+      <div class="nav-label">Cari</div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-icon"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div>
+      <div class="nav-label">Tambah</div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+      <div class="nav-label">Favorit</div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+      <div class="nav-label">Profil</div>
+    </div>
+  </div>
+  
+  <div class="home-indicator"></div>
+</div>
+</body>
+</html>
