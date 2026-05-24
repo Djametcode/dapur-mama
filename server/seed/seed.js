@@ -259,7 +259,7 @@ const seedData = async () => {
       {
         title: 'Gado-gado Betawi',
         description: 'Gado-gado Betawi dengan bumbu kacang yang kental dan gurih. Campuran sayuran segar dengan tahu dan tempe goreng yang renyah.',
-        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Gado-gado_in_Jakarta.JPG/960px-Gado-gado_in_Jakarta.JPG',
+        image: '/uploads/recipes/gado-gado.jpg',
         category: 'Makan Siang',
         ingredients: [
           { name: 'Kangkung', amount: '200 gram' },
