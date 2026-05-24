@@ -145,7 +145,7 @@ export default function Home() {
       }
       if (!activeCategory || activeCategory === 'tutorial') {
         promises.push(
-          api.get('/tutorials', { params: { category: activeCategory } })
+          api.get('/tutorials')
             .then(res => (res.data.tutorials || []).map(t => ({ ...t, _type: 'tutorial' })))
             .catch(() => [])
         )
