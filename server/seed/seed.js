@@ -72,7 +72,7 @@ const seedData = async () => {
       {
         title: 'Nasi Goreng Spesial',
         description: 'Nasi goreng spesial dengan bumbu rahasia khas Indonesia. Rasa gurih dan pedas yang menggugah selera, cocok untuk sarapan atau makan malam.',
-        image: '/uploads/recipes/nasi-goreng.jpg',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Nasi_goreng_indonesia.jpg/960px-Nasi_goreng_indonesia.jpg',
         category: 'Sarapan',
         ingredients: [
           { name: 'Nasi putih', amount: '2 piring' },
@@ -108,7 +108,7 @@ const seedData = async () => {
       {
         title: 'Rendang Daging Sapi',
         description: 'Rendang daging sapi autentik Minang dengan bumbu kaya rempah. Dimasak perlahan hingga empuk dan bumbu meresap sempurna.',
-        image: '/uploads/recipes/rendang.jpg',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Beef_Rendang..JPG/960px-Beef_Rendang..JPG',
         category: 'Makan Malam',
         ingredients: [
           { name: 'Daging sapi', amount: '500 gram' },
@@ -147,7 +147,7 @@ const seedData = async () => {
       {
         title: 'Soto Ayam Lamongan',
         description: 'Soto ayam Lamongan dengan kuah bening yang segar dan kaya rempah. Dilengkapi telur rebus, bihun, dan sambal khas.',
-        image: '/uploads/recipes/soto-ayam.jpg',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Soto_ayam.JPG/960px-Soto_ayam.JPG',
         category: 'Makan Siang',
         ingredients: [
           { name: 'Ayam kampung', amount: '500 gram' },
@@ -188,7 +188,7 @@ const seedData = async () => {
       {
         title: 'Martabak Manis',
         description: 'Martabak manis tebal dengan topping kaya rasa. Adonan yang lembut dan fluffy dengan isisan coklat keju yang leleh.',
-        image: '/uploads/recipes/martabak.jpg',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Terang_Bulan_roasted_chicken.JPG/960px-Terang_Bulan_roasted_chicken.JPG',
         category: 'Cemilan',
         ingredients: [
           { name: 'Tepung terigu', amount: '250 gram' },
@@ -225,7 +225,7 @@ const seedData = async () => {
       {
         title: 'Puding Coklat',
         description: 'Puding coklat lembut dan creamy yang sangat mudah dibuat. Dessert sempurna untuk hidangan penutup yang disukai semua kalangan.',
-        image: '/uploads/recipes/puding-coklat.jpg',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Puding_Coklat.jpg/960px-Puding_Coklat.jpg',
         category: 'Cemilan',
         ingredients: [
           { name: 'Susu cair', amount: '800 ml' },
@@ -259,7 +259,7 @@ const seedData = async () => {
       {
         title: 'Gado-gado Betawi',
         description: 'Gado-gado Betawi dengan bumbu kacang yang kental dan gurih. Campuran sayuran segar dengan tahu dan tempe goreng yang renyah.',
-        image: '/uploads/recipes/gado-gado.jpg',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Gado-gado_in_Jakarta.JPG/960px-Gado-gado_in_Jakarta.JPG',
         category: 'Makan Siang',
         ingredients: [
           { name: 'Kangkung', amount: '200 gram' },
@@ -304,7 +304,7 @@ const seedData = async () => {
       {
         title: 'Cara Membuat Nasi Goreng Spesial',
         description: 'Tutorial lengkap cara membuat nasi goreng spesial dari nol. Pelajari tips dan trik agar nasi gorengmu memiliki rasa yang lezat dan tekstur yang pas.',
-        image: '/uploads/tutorials/nasi-goreng-tutorial.jpg',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Cooking_fried_rice.jpg/960px-Cooking_fried_rice.jpg',
         videoUrl: 'https://www.youtube.com/watch?v=VmBYmVVyzVw',
         duration: '15 menit',
         category: 'Sarapan',
@@ -313,7 +313,7 @@ const seedData = async () => {
       {
         title: 'Tips Memasak Rendang Padang Autentik',
         description: 'Kumpulan tips dan trik untuk memasak rendang yang autentik dan lezat. Dari pemilihan daging hingga teknik memasak yang benar.',
-        image: '/uploads/tutorials/rendang-tutorial.jpg',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Rendang_1.JPG/960px-Rendang_1.JPG',
         videoUrl: 'https://www.youtube.com/watch?v=qWdFYDBrT3I',
         duration: '20 menit',
         category: 'Makan Malam',
@@ -322,7 +322,7 @@ const seedData = async () => {
       {
         title: 'Resep Martabak Manis Anti Gagal',
         description: 'Belajar membuat martabak manis yang lembut dan mengembang sempurna. Termasuk rahasia adonan yang fluffy.',
-        image: '/uploads/tutorials/martabak-tutorial.jpg',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Giant_Apam_Balik.jpg/960px-Giant_Apam_Balik.jpg',
         videoUrl: 'https://www.youtube.com/watch?v=Q94L98rwg8Y',
         duration: '25 menit',
         category: 'Cemilan',
@@ -331,7 +331,7 @@ const seedData = async () => {
       {
         title: 'Resep Puding Coklat Simpel',
         description: 'Cara membuat puding coklat yang creamy dan lembut. Resep simpel yang bisa dicoba di rumah.',
-        image: '/uploads/tutorials/puding-tutorial.jpg',
+        image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&h=600&fit=crop',
         videoUrl: 'https://www.youtube.com/watch?v=o2f4EkD1B9Q',
         duration: '12 menit',
         category: 'Cemilan',
@@ -361,7 +361,7 @@ Setiap koki hebat pernah mengalami kegagalan. Anggap kegagalan sebagai pembelaja
 
 5. Nikmati Prosesnya
 Memasak seharusnya menyenangkan. Nikmati setiap langkah dan jangan terlalu memaksakan diri untuk sempurna.`,
-        image: '/uploads/blogs/tips-pemula.jpg',
+        image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&h=600&fit=crop',
         author: user._id,
         tags: ['tips', 'pemula', 'memasak']
       },
@@ -383,7 +383,7 @@ Dengan memasak sendiri, kamu bisa mengurangi penggunaan kemasan plastik sekali p
 
 5. Menyalurkan Kreativitas
 Dapur adalah studio kreatif kamu. Eksperimen dengan bahan dan bumbu berbeda untuk menciptakan kreasi baru yang unik.`,
-        image: '/uploads/blogs/manfaat-memasak.jpg',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Memasak_Rendang.jpg/960px-Memasak_Rendang.jpg',
         author: user._id,
         tags: ['tips', 'kesehatan', 'keluarga']
       },
@@ -407,7 +407,7 @@ Roti gandum yang diolesi alpukat tumbuk, ditambah telur mata sapi dan tomat, men
 Bubur ayam hangat dengan ayam suwir, daun bawang, dan kerupuk adalah pilihan sarapan khas Indonesia yang menyehatkan.
 
 Ingat, sarapan yang baik mengandung kombinasi protein, karbohidrat kompleks, dan lemak sehat.`,
-        image: '/uploads/blogs/sarapan-sehat.jpg',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Nasi_Goreng_Breakfast_in_Solo.JPG/960px-Nasi_Goreng_Breakfast_in_Solo.JPG',
         author: user2._id,
         tags: ['resepsi', 'sarapan', 'kesehatan']
       },
@@ -435,7 +435,7 @@ Ingat, sarapan yang baik mengandung kombinasi protein, karbohidrat kompleks, dan
 - Simpan bumbu segar di dalam kulkas atau freezer.
 - Bumbu kering sebaiknya disimpan dalam wadah kedap udara di tempat gelap.
 - Giling bumbu sesuai kebutuhan untuk hasil terbaik.`,
-        image: '/uploads/blogs/bumbu-dapur.jpg',
+        image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=800&h=600&fit=crop',
         author: user._id,
         tags: ['bumbu', 'rempah', 'panduan']
       }
