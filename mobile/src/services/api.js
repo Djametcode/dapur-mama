@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://dapur-mama.onrender.com';
 
 const getHeaders = async () => {
   const token = await AsyncStorage.getItem('token');
