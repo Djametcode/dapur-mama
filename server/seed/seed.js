@@ -225,7 +225,7 @@ const seedData = async () => {
       {
         title: 'Puding Coklat',
         description: 'Puding coklat lembut dan creamy yang sangat mudah dibuat. Dessert sempurna untuk hidangan penutup yang disukai semua kalangan.',
-        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Puding_Coklat.jpg/960px-Puding_Coklat.jpg',
+        image: '/uploads/recipes/puding-coklat.jpg',
         category: 'Cemilan',
         ingredients: [
           { name: 'Susu cair', amount: '800 ml' },
