@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Dapur Mama - Beranda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #FFF8F0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+.phone-frame {
+  width: 375px;
+  height: 812px;
+  background: #FFF8F0;
+  overflow-y: auto;
+  position: relative;
+  border-radius: 40px;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+  border: 8px solid #1a1a1a;
+}
+.phone-frame::-webkit-scrollbar { display: none; }
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #E07A2F 0%, #c96a24 100%);
+  padding: 20px 20px 24px;
+  border-radius: 0 0 24px 24px;
+}
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.header-left { display: flex; align-items: center; gap: 12px; }
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  border: 2px solid rgba(255,255,255,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+.greeting { color: rgba(255,255,255,0.8); font-size: 12px; }
+.greeting strong { display: block; color: #fff; font-size: 17px; font-weight: 700; }
+.header-right { display: flex; gap: 10px; }
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.badge {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 16px;
+  height: 16px;
+  background: #ff3b30;
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #E07A2F;
+}
+
+/* Search */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 14px;
+  padding: 0 14px;
+  height: 44px;
+  gap: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.search-bar .icon { font-size: 15px; color: #aaa; }
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #333;
+  background: transparent;
+}
+.search-bar input::placeholder { color: #bbb; }
+
+/* Tabs */
+.tabs-wrapper {
+  padding: 16px 0 0;
+  position: sticky;
+  top: 0;
+  background: #FFF8F0;
+  z-index: 10;
+}
+.tabs {
+  display: flex;
+  gap: 0;
+  padding: 0 20px;
+}
+.tab {
+  flex: 1;
+  height: 40px;
+  border: none;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #999;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+.tab.active {
+  color: #E07A2F;
+  font-weight: 600;
+  border-bottom-color: #E07A2F;
+}
+
+/* Content */
+.content { padding: 16px 20px 100px; }
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+.see-all {
+  font-size: 13px;
+  color: #E07A2F;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Horizontal Scroll Recipes */
+.recipe-scroll {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+  scroll-snap-type: x mandatory;
+}
+.recipe-scroll::-webkit-scrollbar { display: none; }
+.recipe-card-h {
+  min-width: 155px;
+  scroll-snap-align: start;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  flex-shrink: 0;
+}
+.recipe-card-h .img-wrap {
+  height: 110px;
+  background: #f0f0f0;
+  overflow: hidden;
+  position: relative;
+}
+.recipe-card-h .img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.recipe-card-h .img-wrap .tag {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  background: rgba(45,106,79,0.9);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.recipe-card-h .info { padding: 10px 12px; }
+.recipe-card-h .info h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.recipe-card-h .info .meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #999;
+}
+.recipe-card-h .info .meta span { display: flex; align-items: center; gap: 3px; }
+
+/* Blog/Tutorial Cards */
+.blog-card {
+  display: flex;
+  gap: 12px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.blog-card .thumb {
+  width: 90px;
+  height: 74px;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.blog-card .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.blog-card .blog-info { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.blog-card .blog-info .type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #E07A2F;
+  margin-bottom: 4px;
+}
+.blog-card .blog-info h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+.blog-card .blog-info p {
+  font-size: 11px;
+  color: #999;
+  line-height: 1.4;
+}
+
+/* Recipe Grid */
+.recipe-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.recipe-card-v {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.recipe-card-v .img-wrap {
+  height: 100px;
+  overflow: hidden;
+  position: relative;
+}
+.recipe-card-v .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.recipe-card-v .img-wrap .heart {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 28px;
+  height: 28px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+}
+.recipe-card-v .info { padding: 10px 10px 12px; }
+.recipe-card-v .info h4 {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+.recipe-card-v .info .bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #999;
+}
+
+/* Bottom Nav */
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  background: #fff;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 10px;
+  box-shadow: 0 -2px 15px rgba(0,0,0,0.06);
+  border-radius: 0 0 32px 32px;
+  z-index: 20;
+}
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.nav-item .icon { font-size: 20px; }
+.nav-item span {
+  font-size: 10px;
+  font-weight: 500;
+  color: #999;
+}
+.nav-item.active span { color: #E07A2F; font-weight: 600; }
+.nav-item.active .icon { transform: scale(1.1); }
+.nav-add {
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, #E07A2F, #c96a24);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #fff;
+  margin-top: -18px;
+  box-shadow: 0 4px 12px rgba(224,122,47,0.35);
+  cursor: pointer;
+  border: none;
+}
+</style>
+</head>
+<body>
+<div class="phone-frame">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-top">
+      <div class="header-left">
+        <div class="avatar">👩</div>
+        <div class="greeting">
+          Selamat pagi 👋
+          <strong>Sari Dewi</strong>
+        </div>
+      </div>
+      <div class="header-right">
+        <button class="icon-btn">🔔<span class="badge">3</span></button>
+        <button class="icon-btn">⚙️</button>
+      </div>
+    </div>
+    <div class="search-bar">
+      <span class="icon">🔍</span>
+      <input type="text" placeholder="Cari resep, tutorial, atau blog...">
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs-wrapper">
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab(this)">Semua</button>
+      <button class="tab" onclick="switchTab(this)">Resep</button>
+      <button class="tab" onclick="switchTab(this)">Tutorial</button>
+      <button class="tab" onclick="switchTab(this)">Blog</button>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+
+    <!-- Resep Populer -->
+    <div class="section-header">
+      <div class="section-title">🔥 Resep Populer</div>
+      <a href="#" class="see-all">Lihat semua →</a>
+    </div>
+    <div class="recipe-scroll">
+      <div class="recipe-card-h">
+        <div class="img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Nasi_Goreng_in_Jakarta.jpg/640px-Nasi_Goreng_in_Jakarta.jpg" alt="Nasi Goreng">
+          <span class="tag">Asia</span>
+        </div>
+        <div class="info">
+          <h4><a href="4-detail-resep.html" style="text-decoration:none;color:inherit">Nasi Goreng Spesial</a></h4>
+          <div class="meta"><span>⏱ 30 mnt</span><span>⭐ 4.8</span></div>
+        </div>
+      </div>
+      <div class="recipe-card-h">
+        <div class="img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Rendang_daging.jpg/640px-Rendang_daging.jpg" alt="Rendang">
+          <span class="tag">Padang</span>
+        </div>
+        <div class="info">
+          <h4>Rendang Daging Sapi</h4>
+          <div class="meta"><span>⏱ 3 jam</span><span>⭐ 4.9</span></div>
+        </div>
+      </div>
+      <div class="recipe-card-h">
+        <div class="img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Gado-Gado_Jakarta.jpg/640px-Gado-Gado_Jakarta.jpg" alt="Gado-Gado">
+          <span class="tag">Sehat</span>
+        </div>
+        <div class="info">
+          <h4><a href="../web/public/uploads/recipes/gado-gado.html" style="text-decoration:none;color:inherit">Gado-Gado Jakarta</a></h4>
+          <div class="meta"><span>⏱ 40 mnt</span><span>⭐ 4.7</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resep Terbaru -->
+    <div class="section-header">
+      <div class="section-title">🍳 Resep Terbaru</div>
+      <a href="#" class="see-all">Lihat semua →</a>
+    </div>
+    <div class="recipe-grid">
+      <div class="recipe-card-v">
+        <div class="img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Soto_Ayam_Bening.jpg/640px-Soto_Ayam_Bening.jpg" alt="Soto Ayam">
+          <button class="heart">🤍</button>
+        </div>
+        <div class="info">
+          <h4>Soto Ayam Bening</h4>
+          <div class="bottom"><span>⏱ 45 mnt</span><span>⭐ 4.6</span></div>
+        </div>
+      </div>
+      <div class="recipe-card-v">
+        <div class="img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Sate_Ayam_Madura.jpg/640px-Sate_Ayam_Madura.jpg" alt="Sate Ayam">
+          <button class="heart">❤️</button>
+        </div>
+        <div class="info">
+          <h4>Sate Ayam Madura</h4>
+          <div class="bottom"><span>⏱ 60 mnt</span><span>⭐ 4.8</span></div>
+        </div>
+      </div>
+      <div class="recipe-card-v">
+        <div class="img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Nasi_Pecel_Madiun.jpg/640px-Nasi_Pecel_Madiun.jpg" alt="Pecel">
+          <button class="heart">🤍</button>
+        </div>
+        <div class="info">
+          <h4>Pecel Lele</h4>
+          <div class="bottom"><span>⏱ 35 mnt</span><span>⭐ 4.5</span></div>
+        </div>
+      </div>
+      <div class="recipe-card-v">
+        <div class="img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Puding_Coklat.jpg/640px-Puding_Coklat.jpg" alt="Puding">
+          <button class="heart">🤍</button>
+        </div>
+        <div class="info">
+          <h4>Puding Coklat Vla</h4>
+          <div class="bottom"><span>⏱ 25 mnt</span><span>⭐ 4.7</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tutorial Terbaru -->
+    <div class="section-header">
+      <div class="section-title">📹 Tutorial Terbaru</div>
+      <a href="#" class="see-all">Lihat semua →</a>
+    </div>
+    <div class="blog-card" style="margin-bottom:12px">
+      <div class="thumb">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Kue_lapis_Indonesia.jpg/640px-Kue_lapis_Indonesia.jpg" alt="Tutorial">
+      </div>
+      <div class="blog-info">
+        <span class="type-badge">▶ Video Tutorial</span>
+        <h4><a href="5-detail-tutorial.html" style="text-decoration:none;color:inherit">Cara Membuat Kue Lapis legit Anti Gagal</a></h4>
+        <p>10 menit • 45rb views</p>
+      </div>
+    </div>
+    <div class="blog-card">
+      <div class="thumb">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Klepon_from_Indonesia_%281%29.jpg/640px-Klepon_from_Indonesia_%281%29.jpg" alt="Tutorial2">
+      </div>
+<div class="blog-info">
+        <span class="type-badge">▶ Video Tutorial</span>
+        <h4>Tutorial Kue Klepon Kelapa Parut</h4>
+        <p>8 menit • 32rb views</p>
+      </div>
+    </div>
+
+    <!-- Blog -->
+    <div class="section-header" style="margin-top:8px">
+      <div class="section-title">📝 Blog Masak</div>
+      <a href="#" class="see-all">Lihat semua →</a>
+    </div>
+    <div class="blog-card">
+      <div class="thumb">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Kitchen_knife.jpg/640px-Kitchen_knife.jpg" alt="Blog">
+      </div>
+      <div class="blog-info">
+        <span class="type-badge">📄 Artikel</span>
+        <h4><a href="6-detail-blog.html" style="text-decoration:none;color:inherit">Tips Memilih Pisau Dapur yang Tepat untuk Ibu Rumah Tangga</a></h4>
+        <p>5 mnt baca • 2 minggu lalu</p>
+      </div>
+    </div>
+    <div class="blog-card">
+      <div class="thumb">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Spices_in_India.jpg/640px-Spices_in_India.jpg" alt="Blog2">
+      </div>
+      <div class="blog-info">
+        <span class="type-badge">📄 Artikel</span>
+        <h4>Rahasia Bumbu dapur Indonesia yang Bikin Masakan Lezat</h4>
+        <p>7 mnt baca • 3 hari lalu</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Nav -->
+  <div class="bottom-nav">
+    <a class="nav-item active" href="#">
+      <span class="icon">🏠</span>
+      <span>Beranda</span>
+    </a>
+    <a class="nav-item" href="#">
+      <span class="icon">🔍</span>
+      <span>Jelajahi</span>
+    </a>
+    <a class="nav-item" href="#">
+      <button class="nav-add">+</button>
+    </a>
+    <a class="nav-item" href="#">
+      <span class="icon">🔖</span>
+      <span>Simpan</span>
+    </a>
+    <a class="nav-item" href="#">
+      <span class="icon">👤</span>
+      <span>Profil</span>
+    </a>
+  </div>
+
+</div>
+
+<script>
+function switchTab(el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>

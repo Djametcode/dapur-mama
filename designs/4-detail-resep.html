@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Dapur Mama - Nasi Goreng Spesial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #FFF8F0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+.phone-frame {
+  width: 375px;
+  height: 812px;
+  background: #FFF8F0;
+  overflow-y: auto;
+  position: relative;
+  border-radius: 40px;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+  border: 8px solid #1a1a1a;
+}
+.phone-frame::-webkit-scrollbar { display: none; }
+
+/* Hero Image */
+.hero {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.hero-btn {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.9);
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+}
+.hero-actions { display: flex; gap: 8px; }
+.hero-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px 20px 16px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.6));
+}
+.hero-tags {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.hero-tag {
+  background: rgba(224,122,47,0.9);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+.hero-tag.green {
+  background: rgba(45,106,79,0.9);
+}
+
+/* Content */
+.detail-content {
+  padding: 20px;
+  padding-bottom: 100px;
+}
+.detail-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+.detail-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.detail-author .avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #E07A2F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+.detail-author .info { font-size: 13px; color: #666; }
+.detail-author .info strong { color: #1a1a1a; display: block; font-size: 13px; }
+
+/* Stats Bar */
+.stats-bar {
+  display: flex;
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px 0;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.stat-item {
+  flex: 1;
+  text-align: center;
+  border-right: 1px solid #f0f0f0;
+}
+.stat-item:last-child { border: none; }
+.stat-item .icon { font-size: 18px; margin-bottom: 4px; }
+.stat-item .value { font-size: 14px; font-weight: 700; color: #1a1a1a; }
+.stat-item .label { font-size: 11px; color: #999; }
+
+/* Description */
+.description {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+/* Ingredients */
+.section-title-detail {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ingredient-list {
+  background: #fff;
+  border-radius: 14px;
+  padding: 6px 0;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.ingredient-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f5f5f5;
+  gap: 12px;
+}
+.ingredient-item:last-child { border: none; }
+.ingredient-check {
+  width: 22px;
+  height: 22px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.ingredient-check.done {
+  background: #2D6A4F;
+  border-color: #2D6A4F;
+  color: #fff;
+  font-size: 12px;
+}
+.ingredient-text { font-size: 14px; color: #333; flex: 1; }
+.ingredient-text .qty { font-weight: 600; color: #E07A2F; }
+
+/* Steps */
+.step-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  display: flex;
+  gap: 14px;
+}
+.step-number {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #E07A2F, #c96a24);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.step-text {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.6;
+}
+.step-text strong { color: #1a1a1a; }
+
+/* Bottom Action */
+.bottom-action {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 12px;
+  box-shadow: 0 -2px 15px rgba(0,0,0,0.06);
+  border-radius: 0 0 32px 32px;
+}
+.btn-save {
+  height: 48px;
+  border: 2px solid #E07A2F;
+  background: transparent;
+  border-radius: 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #E07A2F;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 20px;
+}
+.btn-share {
+  height: 48px;
+  border: 1.5px solid #ddd;
+  background: #fff;
+  border-radius: 14px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+}
+.btn-start {
+  flex: 1;
+  height: 48px;
+  background: linear-gradient(135deg, #E07A2F, #c96a24);
+  border: none;
+  border-radius: 14px;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(224,122,47,0.35);
+}
+</style>
+</head>
+<body>
+<div class="phone-frame">
+
+  <!-- Hero -->
+  <div class="hero">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Nasi_Goreng_in_Jakarta.jpg/640px-Nasi_Goreng_in_Jakarta.jpg" alt="Nasi Goreng Spesial">
+    <div class="hero-overlay">
+      <button class="hero-btn" onclick="history.back()">←</button>
+      <div class="hero-actions">
+        <button class="hero-btn">🤍</button>
+        <button class="hero-btn">📤</button>
+      </div>
+    </div>
+    <div class="hero-bottom">
+      <div class="hero-tags">
+        <span class="hero-tag">Asia</span>
+        <span class="hero-tag green">Tradisional</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="detail-content">
+    <h1 class="detail-title">Nasi Goreng Spesial ala Mama Sari</h1>
+
+    <div class="detail-author">
+      <div class="avatar">👩</div>
+      <div class="info">
+        <strong>Sari Dewi</strong>
+        Dipublikasikan 15 Mei 2026
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="icon">⏱</div>
+        <div class="value">30 mnt</div>
+        <div class="label">Waktu</div>
+      </div>
+      <div class="stat-item">
+        <div class="icon">👥</div>
+        <div class="value">4 Porsi</div>
+        <div class="label">Porsi</div>
+      </div>
+      <div class="stat-item">
+        <div class="icon">📊</div>
+        <div class="value">Sedang</div>
+        <div class="label">Kesulitan</div>
+      </div>
+      <div class="stat-item">
+        <div class="icon">🔥</div>
+        <div class="value">350 kkal</div>
+        <div class="label">Kalori</div>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <p class="description">
+      Nasi goreng adalah salah satu masakan khas Indonesia yang sudah mendunia. Resep kali ini dibuat dengan bumbu spesial dari dapur Mama Sari, menghasilkan nasi goreng yang harum, gurih, dan tentunya bikin nagih! Cocok untuk sarapan atau makan malam yang praktis.
+    </p>
+
+    <!-- Ingredients -->
+    <h3 class="section-title-detail">🥘 Bahan-Bahan</h3>
+    <div class="ingredient-list">
+      <div class="ingredient-item">
+        <div class="ingredient-check done">✓</div>
+        <span class="ingredient-text"><span class="qty">3 piring</span> nasi putih sisa semalam</span>
+      </div>
+      <div class="ingredient-item">
+        <div class="ingredient-check done">✓</div>
+        <span class="ingredient-text"><span class="qty">2 butir</span> telur ayam</span>
+      </div>
+      <div class="ingredient-item">
+        <div class="ingredient-check done">✓</div>
+        <span class="ingredient-text"><span class="qty">150 gram</span> ayam fillet, potong dadu kecil</span>
+      </div>
+      <div class="ingredient-item">
+        <div class="ingredient-check"></div>
+        <span class="ingredient-text"><span class="qty">5 siung</span> bawang merah, iris tipis</span>
+      </div>
+      <div class="ingredient-item">
+        <div class="ingredient-check"></div>
+        <span class="ingredient-text"><span class="qty">3 siung</span> bawang putih, cincang halus</span>
+      </div>
+      <div class="ingredient-item">
+        <div class="ingredient-check"></div>
+        <span class="ingredient-text"><span class="qty">2 buah</span> cabai merah, iris</span>
+      </div>
+      <div class="ingredient-item">
+        <div class="ingredient-check"></div>
+        <span class="ingredient-text"><span class="qty">3 sdm</span> kecap manis ABC</span>
+      </div>
+      <div class="ingredient-item">
+        <div class="ingredient-check"></div>
+        <span class="ingredient-text"><span class="qty">1 sdt</span> garam & <span class="qty">½ sdt</span> merica</span>
+      </div>
+      <div class="ingredient-item">
+        <div class="ingredient-check"></div>
+        <span class="ingredient-text"><span class="qty">2 sdm</span> minyak goreng</span>
+      </div>
+    </div>
+
+    <!-- Steps -->
+    <h3 class="section-title-detail">👩‍🍳 Langkah Memasak</h3>
+
+    <div class="step-card">
+      <div class="step-number">1</div>
+      <div class="step-text">
+        <strong>Siapkan bahan.</strong> Panaskan minyak goreng dalam wajan dengan api sedang. Tumis bawang merah dan bawang putih hingga harum dan berwarna keemasan, sekitar 2-3 menit.
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-number">2</div>
+      <div class="step-text">
+        <strong>Masak ayam.</strong> Masukkan potongan ayam fillet, aduk hingga berubah warna dan matang sempurna. Tambahkan irisan cabai merah, aduk rata.
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-number">3</div>
+      <div class="step-text">
+        <strong>Tambahkan telur.</strong> Geser ayam ke pinggir wajan. Pecahkan telur di tengah wajan, orak-arik hingga setengah matang, lalu campur dengan ayam.
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-number">4</div>
+      <div class="step-text">
+        <strong>Masukkan nasi.</strong> Tambahkan nasi putih ke dalam wajan. Aduk rata dengan api besar selama 3-4 menit agar nasi terpisah-pisah dan tidak menggumpal.
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-number">5</div>
+      <div class="step-text">
+        <strong>Bumbui & sajikan.</strong> Tambahkan kecap manis, garam, dan merica. Aduk hingga semua bumbu tercampur rata. Sajikan hangat dengan irisan timun dan kerupuk udang.
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Action -->
+  <div class="bottom-action">
+    <button class="btn-save">🤍 Simpan</button>
+    <button class="btn-share">📤</button>
+    <button class="btn-start">Masak Sekarang</button>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Dapur Mama - Tips Memilih Pisau Dapur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #FFF8F0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+.phone-frame {
+  width: 375px;
+  height: 812px;
+  background: #FFF8F0;
+  overflow-y: auto;
+  position: relative;
+  border-radius: 40px;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+  border: 8px solid #1a1a1a;
+}
+.phone-frame::-webkit-scrollbar { display: none; }
+
+/* Hero */
+.blog-hero {
+  position: relative;
+  height: 260px;
+  overflow: hidden;
+}
+.blog-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.blog-hero-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40px 20px 16px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.65));
+}
+.blog-hero-top {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.blog-hero-btn {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.9);
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+}
+.blog-cat-badge {
+  background: #2D6A4F;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 8px;
+}
+.blog-hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+}
+
+/* Content */
+.blog-content {
+  padding: 20px;
+  padding-bottom: 100px;
+}
+
+/* Author */
+.blog-author-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
+}
+.blog-author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E07A2F, #2D6A4F);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.blog-author-info { flex: 1; }
+.blog-author-info .name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+.blog-author-info .date {
+  font-size: 12px;
+  color: #999;
+}
+.blog-read-time {
+  font-size: 12px;
+  color: #888;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Stats */
+.blog-stats {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.blog-stat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #888;
+}
+
+/* Article Body */
+.blog-body {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.8;
+}
+.blog-body p { margin-bottom: 16px; }
+.blog-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+.blog-body h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #E07A2F;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+.blog-body strong { color: #1a1a1a; }
+.blog-body blockquote {
+  background: rgba(224,122,47,0.08);
+  border-left: 4px solid #E07A2F;
+  padding: 14px 16px;
+  border-radius: 0 10px 10px 0;
+  margin: 16px 0;
+  font-style: italic;
+  font-size: 14px;
+  color: #555;
+}
+.blog-body ul {
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+.blog-body ul li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #444;
+}
+
+/* Inline image */
+.blog-inline-img {
+  width: 100%;
+  border-radius: 12px;
+  margin: 16px 0;
+  overflow: hidden;
+}
+.blog-inline-img img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+.blog-inline-img .caption {
+  background: #fff;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #888;
+  font-style: italic;
+}
+
+/* Tags */
+.blog-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+}
+.blog-tag {
+  background: rgba(224,122,47,0.08);
+  color: #E07A2F;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 8px;
+}
+
+/* Share */
+.blog-share {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+.share-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+}
+.share-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #eee;
+  background: #fff;
+}
+
+/* Related */
+.related-section {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+.related-section h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 14px;
+}
+
+/* Bottom Action */
+.blog-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 68px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 12px;
+  box-shadow: 0 -2px 15px rgba(0,0,0,0.06);
+  border-radius: 0 0 32px 32px;
+}
+.blog-bottom .btn-like {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 42px;
+  border: 1.5px solid #ddd;
+  background: #fff;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  padding: 0 14px;
+}
+.blog-bottom .btn-like.liked {
+  border-color: #E07A2F;
+  color: #E07A2F;
+  background: rgba(224,122,47,0.06);
+}
+.blog-bottom .btn-comment {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 42px;
+  border: 1.5px solid #ddd;
+  background: #fff;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  padding: 0 14px;
+}
+.blog-bottom .btn-bookmark {
+  height: 42px;
+  width: 42px;
+  border: 1.5px solid #ddd;
+  background: #fff;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
+</head>
+<body>
+<div class="phone-frame">
+
+  <!-- Hero Image -->
+  <div class="blog-hero">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Kitchen_knife.jpg/640px-Kitchen_knife.jpg" alt="Pisau Dapur">
+    <div class="blog-hero-top">
+      <button class="blog-hero-btn" onclick="history.back()">←</button>
+      <span class="blog-cat-badge">💡 Tips Dapur</span>
+    </div>
+    <div class="blog-hero-overlay">
+      <h1 class="blog-hero-title">Tips Memilih Pisau Dapur yang Tepat untuk Ibu Rumah Tangga</h1>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="blog-content">
+
+    <!-- Author -->
+    <div class="blog-author-row">
+      <div class="blog-author-avatar">👩</div>
+      <div class="blog-author-info">
+        <div class="name">Sari Dewi</div>
+        <div class="date">10 Mei 2026</div>
+      </div>
+      <div class="blog-read-time">🕐 5 menit baca</div>
+    </div>
+
+    <!-- Stats -->
+    <div class="blog-stats">
+      <div class="blog-stat">👁 12.543 views</div>
+      <div class="blog-stat">💬 28 komentar</div>
+      <div class="blog-stat">🤍 342 suka</div>
+    </div>
+
+    <!-- Article Body -->
+    <div class="blog-body">
+
+      <p>
+        Pisau adalah salah satu alat terpenting di dapur. Tanpa pisau yang tepat, proses memotong sayuran, daging, dan bahan masakan lainnya bisa menjadi tugas yang melelahkan dan bahkan berbahaya. Di artikel ini, Mama Sari akan berbagi tips memilih pisau dapur yang tepat untuk kebutuhan sehari-hari.
+      </p>
+
+      <h2>Jenis Pisau Dapur yang Harus Dimiliki</h2>
+
+      <p>Setiap ibu rumah tangga minimal harus memiliki <strong>3 jenis pisau dasar</strong> di dapurnya:</p>
+
+      <ul>
+        <li><strong>Chef's Knife (Pisau Koki)</strong> — Pisau multifungsi dengan panjang 15-20 cm. Cocok untuk memotong, mengiris, dan mencincang hampir semua jenis bahan.</li>
+        <li><strong>Utility Knife (Pisau Serbaguna)</strong> — Pisau berukuran sedang (10-15 cm) untuk pekerjaan ringan seperti mengiris tomat atau keju.</li>
+        <li><strong>Paring Knife (Pisau Kupas)</strong> — Pisau kecil untuk mengupas buah, menghias, atau memotong detail kecil.</li>
+      </ul>
+
+      <div class="blog-inline-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Types_of_kitchen_knives.svg/640px-Types_of_kitchen_knives.svg.png" alt="Jenis Pisau Dapur">
+        <div class="caption">Ilustrasi berbagai jenis pisau dapur beserta fungsinya</div>
+      </div>
+
+      <h2>Bahan Pisau: Stainless Steel vs Karbon</h2>
+
+      <h3>1. Stainless Steel</h3>
+      <p>
+        Pisau stainless steel adalah pilihan paling populer untuk dapur rumah. Keunggulannya adalah <strong>tahan karat</strong>, mudah dirawat, dan harganya terjangkau. Cocok untuk penggunaan sehari-hari yang intensif.
+      </p>
+
+      <h3>2. Baja Karbon</h3>
+      <p>
+        Pisau baja karbon menghasilkan ujung yang <strong>lebih tajam</strong> dibandingkan stainless steel. Namun, membutuhkan perawatan ekstra karena rentan berkarat jika tidak dirawat dengan baik.
+      </p>
+
+      <blockquote>
+        "Investasi dalam pisau berkualitas adalah investasi terbaik yang bisa dilakukan seorang ibu rumah tangga untuk dapurnya. Pisau yang baik membuat pekerjaan memasak menjadi lebih menyenangkan." — Chef William Wongso
+      </blockquote>
+
+      <h2>Cara Merawat Pisau Dapur</h2>
+
+      <p>Agar pisau tetap awet dan tajam, ikuti tips perawatan berikut ini:</p>
+
+      <ul>
+        <li><strong>Cuci dengan tangan</strong> — Jangan pernah memasukkan pisau ke dalam mesin cuci piring. Cuci dengan tangan menggunakan sabun lembut.</li>
+        <li><strong>Keringkan segera</strong> — Setelah dicuci, keringkan pisau dengan handuk bersih untuk mencegah noda air dan karat.</li>
+        <li><strong>Gunakan talenan yang tepat</strong> — Gunakan talenan kayu atau plastik. Hindari memotong di atas granit atau keramik karena dapat merusak ujung pisau.</li>
+        <li><strong>Asah secara berkala</strong> — Asah pisau setiap 1-2 minggu untuk menjaga ketajamannya. Gunakan batu asah atau pengasah pisau.</li>
+        <li><strong>Simpan dengan benar</strong> — Simpan pisau di magnetic knife holder atau blok pisau. Jangan taruh bebas di laci yang bisa merusak ujungnya.</li>
+      </ul>
+
+      <h2>Rekomendasi Budget untuk Ibu Rumah Tangga</h2>
+
+      <p>
+        Tidak perlu membeli pisau mahal untuk hasil yang memuaskan. Berikut rekomendasi pisau dengan harga terjangkau namun berkualitas:
+      </p>
+
+      <ul>
+        <li><strong>Budget Rp100-200 ribu:</strong> Victorinox Fibrox, pisau Swiss yang sangat tajam dan tahan lama.</li>
+        <li><strong>Budget Rp200-500 ribu:</strong> Tojiro Pro Series, pisau Jepang dengan kualitas excellent.</li>
+        <li><strong>Budget Rp500 ribu+:</strong> Wüsthof atau Zwilling, pisau premium buatan Jerman yang bisa bertahan puluhan tahun.</li>
+      </ul>
+
+      <div class="blog-inline-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Spices_in_India.jpg/640px-Spices_in_India.jpg" alt="Bumbu Dapur">
+        <div class="caption">Pisau yang baik membantu menyiapkan bumbu dengan lebih efisien</div>
+      </div>
+
+      <h2>Kesimpulan</h2>
+
+      <p>
+        Memilih pisau dapur yang tepat tidak harus mahal. Yang terpenting adalah memahami kebutuhan memasak kita, memilih bahan yang sesuai, dan merawat pisau dengan benar. Dengan pisau yang tepat, kegiatan memasak di dapur menjadi lebih efisien dan menyenangkan!
+      </p>
+
+      <p style="font-size:13px;color:#888;margin-top:12px">
+        Semoga tips ini bermanfaat ya, Bun! Jangan lupa share ke teman-teman yang butuh info ini. 😊
+      </p>
+
+      <!-- Tags -->
+      <div class="blog-tags">
+        <span class="blog-tag">#TipsDapur</span>
+        <span class="blog-tag">#PisauDapur</span>
+        <span class="blog-tag">#IbuRumahTangga</span>
+        <span class="blog-tag">#Memasak</span>
+        <span class="blog-tag">#DapurMama</span>
+      </div>
+
+      <!-- Share -->
+      <div class="blog-share">
+        <span class="share-label">Bagikan:</span>
+        <div class="share-icon">📘</div>
+        <div class="share-icon">📷</div>
+        <div class="share-icon">💬</div>
+        <div class="share-icon">🔗</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Action -->
+  <div class="blog-bottom">
+    <button class="btn-like liked">❤️ 342</button>
+    <button class="btn-comment">💬 28</button>
+    <button class="btn-bookmark">🔖</button>
+  </div>
+
+</div>
+</body>
+</html>

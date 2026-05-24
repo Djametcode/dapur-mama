@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Dapur Mama - Login</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #FFF8F0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+.phone-frame {
+  width: 375px;
+  height: 812px;
+  background: #FFF8F0;
+  overflow-y: auto;
+  position: relative;
+  border-radius: 40px;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+  border: 8px solid #1a1a1a;
+}
+.phone-frame::-webkit-scrollbar { display: none; }
+.top-section {
+  height: 380px;
+  background: linear-gradient(135deg, #E07A2F 0%, #c96a24 50%, #E07A2F 100%);
+  border-radius: 0 0 40px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 30px 50px;
+  position: relative;
+  overflow: hidden;
+}
+.top-section::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 200px;
+  height: 200px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+}
+.top-section::after {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  left: -40px;
+  width: 160px;
+  height: 160px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+}
+.logo-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  margin-bottom: 16px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.3);
+}
+.app-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 1px;
+}
+.app-subtitle {
+  color: rgba(255,255,255,0.85);
+  font-size: 14px;
+  margin-top: 6px;
+  font-weight: 300;
+}
+.form-section {
+  padding: 32px 28px;
+  margin-top: -30px;
+  position: relative;
+  z-index: 2;
+}
+.form-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+.form-section p {
+  color: #888;
+  font-size: 13px;
+  margin-bottom: 28px;
+}
+.input-group {
+  margin-bottom: 18px;
+}
+.input-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+}
+.input-wrapper {
+  position: relative;
+}
+.input-wrapper input {
+  width: 100%;
+  height: 50px;
+  border: 1.5px solid #e5e5e5;
+  border-radius: 14px;
+  padding: 0 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #333;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.input-wrapper input:focus {
+  border-color: #E07A2F;
+  box-shadow: 0 0 0 3px rgba(224,122,47,0.1);
+}
+.input-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #aaa;
+}
+.input-wrapper input::placeholder {
+  color: #bbb;
+}
+.forgot-link {
+  text-align: right;
+  margin-top: -8px;
+  margin-bottom: 24px;
+}
+.forgot-link a {
+  font-size: 12px;
+  color: #E07A2F;
+  text-decoration: none;
+  font-weight: 500;
+}
+.btn-login {
+  width: 100%;
+  height: 52px;
+  background: linear-gradient(135deg, #E07A2F, #c96a24);
+  border: none;
+  border-radius: 14px;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 4px 15px rgba(224,122,47,0.35);
+}
+.btn-login:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 8px rgba(224,122,47,0.25);
+}
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 24px 0;
+  gap: 12px;
+}
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: #e5e5e5;
+}
+.divider-text {
+  font-size: 12px;
+  color: #aaa;
+  font-weight: 500;
+}
+.social-btn {
+  width: 100%;
+  height: 48px;
+  border: 1.5px solid #e5e5e5;
+  border-radius: 14px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+.social-btn .icon { font-size: 18px; }
+.register-prompt {
+  text-align: center;
+  margin-top: 24px;
+  padding-bottom: 40px;
+}
+.register-prompt span {
+  font-size: 13px;
+  color: #888;
+}
+.register-prompt a {
+  font-size: 13px;
+  color: #E07A2F;
+  font-weight: 600;
+  text-decoration: none;
+}
+</style>
+</head>
+<body>
+<div class="phone-frame">
+  <div class="top-section">
+    <div class="logo-icon">🍳</div>
+    <div class="app-title">Dapur Mama</div>
+    <div class="app-subtitle">Resep Rumahan Favorit Keluarga</div>
+  </div>
+
+  <div class="form-section">
+    <h2>Selamat Datang!</h2>
+    <p>Masuk untuk menjelajahi ribuan resep lezat</p>
+
+    <div class="input-group">
+      <label>Email</label>
+      <div class="input-wrapper">
+        <input type="email" placeholder="Masukkan email kamu">
+        <span class="input-icon">✉</span>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Kata Sandi</label>
+      <div class="input-wrapper">
+        <input type="password" placeholder="Masukkan kata sandi">
+        <span class="input-icon">👁</span>
+      </div>
+    </div>
+
+    <div class="forgot-link">
+      <a href="#">Lupa kata sandi?</a>
+    </div>
+
+    <button class="btn-login">Masuk</button>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-text">atau masuk dengan</span>
+      <div class="divider-line"></div>
+    </div>
+
+    <button class="social-btn">
+      <span class="icon">G</span> Google
+    </button>
+
+    <button class="social-btn">
+      <span class="icon">📱</span> Nomor Telepon
+    </button>
+
+    <div class="register-prompt">
+      <span>Belum punya akun? </span>
+      <a href="2-register.html">Daftar Sekarang</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

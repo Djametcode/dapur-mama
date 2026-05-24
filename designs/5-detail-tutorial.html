@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Dapur Mama - Tutorial Kue Lapis Legit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #FFF8F0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+.phone-frame {
+  width: 375px;
+  height: 812px;
+  background: #FFF8F0;
+  overflow-y: auto;
+  position: relative;
+  border-radius: 40px;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+  border: 8px solid #1a1a1a;
+}
+.phone-frame::-webkit-scrollbar { display: none; }
+
+/* Video Player */
+.video-section {
+  position: relative;
+  width: 100%;
+  background: #000;
+}
+.video-player {
+  width: 100%;
+  aspect-ratio: 16/9;
+  display: block;
+}
+.video-overlay-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: linear-gradient(rgba(0,0,0,0.4), transparent);
+}
+.video-btn {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.9);
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+}
+.video-actions { display: flex; gap: 8px; }
+.video-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255,255,255,0.3);
+}
+.video-progress-fill {
+  height: 100%;
+  width: 35%;
+  background: #E07A2F;
+  border-radius: 0 2px 2px 0;
+}
+
+/* Content */
+.tutorial-content {
+  padding: 20px;
+  padding-bottom: 100px;
+}
+.tutorial-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(224,122,47,0.1);
+  color: #E07A2F;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.tutorial-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+.tutorial-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.tutorial-meta .item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #888;
+}
+.tutorial-meta .item strong { color: #555; }
+
+/* Channel Info */
+.channel-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background: #fff;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.channel-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E07A2F, #2D6A4F);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.channel-info .channel-text { flex: 1; }
+.channel-info .channel-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+.channel-info .channel-subs {
+  font-size: 12px;
+  color: #999;
+}
+.btn-subscribe {
+  background: #E07A2F;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Like/Share Bar */
+.action-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.action-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+}
+.action-pill.liked {
+  background: rgba(224,122,47,0.1);
+  border-color: rgba(224,122,47,0.3);
+  color: #E07A2F;
+}
+
+/* Description */
+.video-desc {
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.video-desc h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+.video-desc p {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.6;
+}
+.video-desc .toggle-more {
+  font-size: 12px;
+  color: #E07A2F;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 6px;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+/* Ingredients list in tutorial */
+.tutorial-section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tutorial-steps {
+  margin-bottom: 20px;
+}
+.tutorial-step {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.tutorial-step .timestamp {
+  font-size: 12px;
+  font-weight: 600;
+  color: #E07A2F;
+  white-space: nowrap;
+  padding-top: 2px;
+}
+.tutorial-step .step-desc {
+  font-size: 13px;
+  color: #444;
+  line-height: 1.5;
+}
+.tutorial-step .timestamp strong { color: #E07A2F; }
+
+/* Related */
+.related-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.related-item .rel-thumb {
+  width: 120px;
+  height: 72px;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+}
+.related-item .rel-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.related-item .rel-duration {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+.related-item .rel-info {
+  padding: 8px 10px 8px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.related-item .rel-info h4 {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+.related-item .rel-info p {
+  font-size: 11px;
+  color: #999;
+}
+
+/* Bottom */
+.bottom-nav-tutorial {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 12px;
+  box-shadow: 0 -2px 15px rgba(0,0,0,0.06);
+  border-radius: 0 0 32px 32px;
+}
+.btn-back {
+  height: 44px;
+  border: 1.5px solid #ddd;
+  background: #fff;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  padding: 0 16px;
+}
+.btn-watch {
+  flex: 1;
+  height: 44px;
+  background: linear-gradient(135deg, #E07A2F, #c96a24);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(224,122,47,0.35);
+}
+</style>
+</head>
+<body>
+<div class="phone-frame">
+
+  <!-- Video Player -->
+  <div class="video-section">
+    <iframe
+      class="video-player"
+      src="https://www.youtube.com/embed/0B6fT2e0nH8"
+      title="Tutorial Membuat Kue Lapis Legit"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      style="width: 100%; aspect-ratio: 16/9; border: none;"
+    ></iframe>
+    <div class="video-overlay-top">
+      <button class="video-btn" onclick="history.back()">←</button>
+      <div class="video-actions">
+        <button class="video-btn">⛶</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="tutorial-content">
+
+    <span class="tutorial-badge">▶ Video Tutorial</span>
+    <h1 class="tutorial-title">Cara Membuat Kue Lapis Legit Anti Gagal</h1>
+
+    <div class="tutorial-meta">
+      <div class="item">👁 <strong>45.234</strong> views</div>
+      <div class="item">📅 <strong>12 Mei 2026</strong></div>
+      <div class="item">⏱ <strong>10:24</strong></div>
+    </div>
+
+    <!-- Channel -->
+    <div class="channel-info">
+      <div class="channel-avatar">👩</div>
+      <div class="channel-text">
+        <div class="channel-name">Dapur Mama Channel</div>
+        <div class="channel-subs">128rb subscriber</div>
+      </div>
+      <button class="btn-subscribe">Subscribe</button>
+    </div>
+
+    <!-- Action Bar -->
+    <div class="action-bar">
+      <div class="action-pill liked">👍 <strong>3.2rb</strong></div>
+      <div class="action-pill">👎</div>
+      <div class="action-pill">📤 Bagikan</div>
+      <div class="action-pill">📥 Unduh</div>
+      <div class="action-pill">✂️ Clip</div>
+    </div>
+
+    <!-- Description -->
+    <div class="video-desc">
+      <h4>Deskripsi Video</h4>
+      <p>
+        Kue lapis legit atau spekkoek adalah kue khas Indonesia yang terkenal dengan lapisan-lapisannya yang tipis dan renyah. Di video kali ini, Mama Sari akan memandu cara membuat kue lapis legit yang lembut dan anti gagal.
+      </p>
+      <p style="margin-top:6px;font-size:12px;color:#999">
+        🎂 Cocok untuk lebaran dan hari spesial<br>
+        📖 Resep lengkap: dapur-mama.vercel.app/resep/kue-lapis
+      </p>
+      <button class="toggle-more">Tampilkan selengkapnya ▾</button>
+    </div>
+
+    <!-- Chapters -->
+    <h3 class="tutorial-section-title">📑 Timestamp</h3>
+    <div class="tutorial-steps">
+      <div class="tutorial-step">
+        <div class="timestamp"><strong>0:00</strong></div>
+        <div class="step-desc">Pengenalan bahan-bahan yang dibutuhkan</div>
+      </div>
+      <div class="tutorial-step">
+        <div class="timestamp"><strong>1:15</strong></div>
+        <div class="step-desc">Mentega & gula di-mixer sampai mengembang putih</div>
+      </div>
+      <div class="tutorial-step">
+        <div class="timestamp"><strong>2:30</strong></div>
+        <div class="step-desc">Masukkan telur satu per satu sambil diaduk</div>
+      </div>
+      <div class="tutorial-step">
+        <div class="timestamp"><strong>3:45</strong></div>
+        <div class="step-desc">Ayak tepung terigu dan masukkan ke adonan</div>
+      </div>
+      <div class="tutorial-step">
+        <div class="timestamp"><strong>5:00</strong></div>
+        <div class="step-desc">Teknik menuang adonan tipis demi tipis ke loyang</div>
+      </div>
+      <div class="tutorial-step">
+        <div class="timestamp"><strong>6:30</strong></div>
+        <div class="step-desc">Tips memanggang setiap lapisan hingga kecokelatan</div>
+      </div>
+      <div class="tutorial-step">
+        <div class="timestamp"><strong>8:15</strong></div>
+        <div class="step-desc">Cara mengecek kematangan dan keluar dari oven</div>
+      </div>
+      <div class="tutorial-step">
+        <div class="timestamp"><strong>9:30</strong></div>
+        <div class="step-desc">Penyajian dan tips penyimpanan kue lapis legit</div>
+      </div>
+    </div>
+
+    <!-- Related -->
+    <h3 class="tutorial-section-title" style="margin-top:8px">🎬 Video Terkait</h3>
+    <div class="related-item">
+      <div class="rel-thumb">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Klepon_from_Indonesia_%281%29.jpg/640px-Klepon_from_Indonesia_%281%29.jpg" alt="Klepon">
+        <span class="rel-duration">8:12</span>
+      </div>
+      <div class="rel-info">
+        <h4>Tutorial Kue Klepon Kelapa Parut</h4>
+        <p>Dapur Mama • 32rb views</p>
+      </div>
+    </div>
+    <div class="related-item">
+      <div class="rel-thumb">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Puding_Coklat.jpg/640px-Puding_Coklat.jpg" alt="Puding">
+        <span class="rel-duration">12:05</span>
+      </div>
+      <div class="rel-info">
+        <h4>Resep Puding Coklat Vla Vanila</h4>
+        <p>Dapur Mama • 28rb views</p>
+      </div>
+    </div>
+    <div class="related-item">
+      <div class="rel-thumb">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Cireng_Spicy.jpg/640px-Cireng_Spicy.jpg" alt="Cireng">
+        <span class="rel-duration">6:45</span>
+      </div>
+      <div class="rel-info">
+        <h4>Cireng Bumbu Rujak Anti Gagal</h4>
+        <p>Dapur Mama • 19rb views</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>
