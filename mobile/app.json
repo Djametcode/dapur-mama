@@ -17,6 +17,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.djametcode.dapurmama",
       "adaptiveIcon": {
         "backgroundColor": "#FFF8F0"
       }
@@ -35,6 +36,9 @@
     },
     "updates": {
       "url": "https://u.expo.dev/9ad7000c-5d52-4746-83fa-47a85f7c4c63"
-    }
+    },
+    "plugins": [
+      "expo-font"
+    ]
   }
 }
